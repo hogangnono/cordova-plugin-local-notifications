@@ -22,7 +22,6 @@
 package de.appplant.cordova.plugin.localnotification;
 
 import android.os.Bundle;
-import android.support.v4.app.RemoteInput;
 
 import androidx.core.app.RemoteInput;
 
