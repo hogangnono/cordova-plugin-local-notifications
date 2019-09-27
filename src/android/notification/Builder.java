@@ -27,10 +27,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.MessagingStyle.Message;
-import android.support.v4.media.app.NotificationCompat.MediaStyle;
 import android.support.v4.media.session.MediaSessionCompat;
+
+import androidx.core.app.NotificationCompat;
 
 import java.util.List;
 import java.util.Random;
@@ -175,7 +174,7 @@ public final class Builder {
      * @param builder Local notification builder instance.
      */
     private void applyStyle(NotificationCompat.Builder builder) {
-        Message[] messages = options.getMessages();
+        NotificationCompat.MessagingStyle.Message[] messages = options.getMessages();
         String summary     = options.getSummary();
 
         if (messages != null) {
@@ -217,14 +216,14 @@ public final class Builder {
      * @param messages The messages to add to the conversation.
      */
     private void applyMessagingStyle(NotificationCompat.Builder builder,
-                                     Message[] messages) {
+                                     NotificationCompat.MessagingStyle.Message[] messages) {
 
         NotificationCompat.MessagingStyle style;
 
         style = new NotificationCompat.MessagingStyle("Me")
                 .setConversationTitle(options.getTitle());
 
-        for (Message msg : messages) {
+        for (NotificationCompat.MessagingStyle.Message msg : messages) {
             style.addMessage(msg);
         }
 
@@ -293,9 +292,9 @@ public final class Builder {
      */
     private void applyMediaStyle(NotificationCompat.Builder builder,
                                  MediaSessionCompat.Token token) {
-        MediaStyle style;
+        androidx.media.app.NotificationCompat.MediaStyle style;
 
-        style = new MediaStyle(builder)
+        style = new androidx.media.app.NotificationCompat.MediaStyle(builder)
                 .setMediaSession(token)
                 .setShowActionsInCompactView(1);
 

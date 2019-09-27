@@ -27,9 +27,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.MessagingStyle.Message;
 import android.support.v4.media.session.MediaSessionCompat;
+
+import androidx.core.app.NotificationCompat;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,13 +43,14 @@ import de.appplant.cordova.plugin.notification.action.Action;
 import de.appplant.cordova.plugin.notification.action.ActionGroup;
 import de.appplant.cordova.plugin.notification.util.AssetUtil;
 
-import static android.support.v4.app.NotificationCompat.DEFAULT_LIGHTS;
-import static android.support.v4.app.NotificationCompat.DEFAULT_SOUND;
-import static android.support.v4.app.NotificationCompat.DEFAULT_VIBRATE;
-import static android.support.v4.app.NotificationCompat.PRIORITY_MAX;
-import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
-import static android.support.v4.app.NotificationCompat.VISIBILITY_PUBLIC;
-import static android.support.v4.app.NotificationCompat.VISIBILITY_SECRET;
+import static androidx.core.app.NotificationCompat.DEFAULT_LIGHTS;
+import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
+import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
+import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
+import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
+import static androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC;
+import static androidx.core.app.NotificationCompat.VISIBILITY_SECRET;
+
 
 /**
  * Wrapper around the JSON object passed through JS which contains all
@@ -621,7 +622,7 @@ public final class Options {
      *
      * @return null if there are no messages.
      */
-    Message[] getMessages() {
+    NotificationCompat.MessagingStyle.Message[] getMessages() {
         Object text = options.opt("text");
 
         if (text == null || text instanceof String)
@@ -632,7 +633,7 @@ public final class Options {
         if (list.length() == 0)
             return null;
 
-        Message[] messages = new Message[list.length()];
+        NotificationCompat.MessagingStyle.Message[] messages = new NotificationCompat.MessagingStyle.Message[list.length()];
         long now           = new Date().getTime();
 
         for (int i = 0; i < messages.length; i++) {
@@ -641,7 +642,7 @@ public final class Options {
             long timestamp = msg.optLong("date", now);
             String person  = msg.optString("person", null);
 
-            messages[i] = new Message(message, timestamp, person);
+            messages[i] = new NotificationCompat.MessagingStyle.Message(message, timestamp, person);
         }
 
         return messages;
