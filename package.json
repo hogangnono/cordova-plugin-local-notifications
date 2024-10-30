@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-local-notification",
-  "version": "0.9.3-hogangnono",
+  "version": "0.9.5-hogangnono",
   "description": "Schedules and queries for local notifications",
   "cordova": {
     "id": "cordova-plugin-local-notification",
@@ -11,7 +11,6 @@
     ]
   },
   "scripts": {
-    "preinstall": "yarn config set registry https://npm.housefeed.com"
   },
   "repository": {
     "type": "git",
